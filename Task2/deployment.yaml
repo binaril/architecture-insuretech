@@ -14,13 +14,11 @@ spec:
       labels:
         app: scaletestapp
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: scaletestapp
         image: ghcr.io/yandex-practicum/scaletestapp:latest
         ports:
-        - containerPort: 8000  
+        - containerPort: 8080  
         resources:
           limits:
             cpu: "500m"
