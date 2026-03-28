@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scaletestapp
+  labels:
+    app: scaletestapp
+spec:
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: scaletestapp
+  template:
+    metadata:
+      labels:
+        app: scaletestapp
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: scaletestapp
+        image: ghcr.io/yandex-practicum/scaletestapp:latest
+        ports:
+        - containerPort: 8000  
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "30Mi"    
