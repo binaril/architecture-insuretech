@@ -1,0 +1,42 @@
+type Query {
+  client(id: ID!): Client # Эквивалент REST: GET /clients/{id}
+}
+
+# Сущность Client
+
+type Client {
+  id: ID!
+  name: String!
+  age: Int!
+  documents: [Document!]! # Эквивалент REST: GET /clients/{id}/documents
+  relatives: [Relative!]! # Эквивалент REST: GET /clients/{id}/relatives
+}
+
+type Document {
+  id: ID!
+  type: String!
+  number: String!
+  issueDate: String!
+  expiryDate: String!
+}
+
+type Relative {
+  id: ID!
+  relationType: String!
+  name: String!
+  age: Int!
+}
+
+
+
+
+# Пример запроса
+
+query  {
+  client(id: "123") {
+    name
+    age
+    documents { id type }
+    relatives { name relationType }
+  }
+}
